@@ -1,5 +1,5 @@
 package com.vaadin.example.views.user;
-import com.vaadin.example.data.entity.User;
+import com.vaadin.example.data.entity.DBUser;
 import com.vaadin.example.data.service.UserService;
 import com.vaadin.example.views.MainLayout;
 import com.vaadin.flow.component.button.Button;
@@ -28,14 +28,14 @@ import java.util.Set;
  * {@link ApplicationServiceInitListener} for adding more demo data.
  */
 
-@PageTitle("")
-@Route(value="", layout = MainLayout.class)
-@RouteAlias(value = "", layout = MainLayout.class)
+@PageTitle("user")
+@Route(value="user", layout = MainLayout.class)
+@RouteAlias(value = "user", layout = MainLayout.class)
 @AnonymousAllowed
 public class UserView extends VerticalLayout {
 
     private final UserService userService;
-    private Grid<User> grid = new Grid<>(User.class, false);
+    private Grid<DBUser> grid = new Grid<>(DBUser.class, false);
 
     Button add = new Button("Add");
     Button delete = new Button("Delete");
@@ -60,16 +60,16 @@ public class UserView extends VerticalLayout {
 
         grid.addClassName("ContactList");
         setSizeFull();
-        grid.addColumn(User::getName).setHeader("Firstname").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
-        grid.addColumn(User::getNachname).setHeader("Lastname").setSortable(true);
-        grid.addColumn(User::getUsername).setHeader("Emails").setSortable(true);
-        grid.addColumn(User::getRecht).setHeader("Emails").setSortable(true);
+        grid.addColumn(DBUser::getName).setHeader("Firstname").setSortable(true).setTextAlign(ColumnTextAlign.CENTER);
+        grid.addColumn(DBUser::getNachname).setHeader("Lastname").setSortable(true);
+        grid.addColumn(DBUser::getUsername).setHeader("Username").setSortable(true);
+        grid.addColumn(DBUser::getRecht).setHeader("Emails").setSortable(true);
         grid.getColumns().forEach(col -> col.setAutoWidth(true));
         grid.setItems(userService.getUser());
         grid.addThemeVariants(GridVariant.LUMO_ROW_STRIPES);
         grid.setSelectionMode(Grid.SelectionMode.MULTI);
         grid.addSelectionListener(event -> {
-            Set<User> selected = event.getAllSelectedItems();
+            Set<DBUser> selected = event.getAllSelectedItems();
             Notification.show(((Set<?>) selected).size() + " items selected");
         });
     }

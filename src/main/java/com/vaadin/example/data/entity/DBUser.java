@@ -1,15 +1,16 @@
 package com.vaadin.example.data.entity;
 
-public class User {
+public class DBUser {
 
     private Long benutzerId;
+
     private String name;
     private String nachname;
     private String username;
     private String passwort;
     private String recht;
 
-    public User() {
+    public DBUser() {
 
     }
 

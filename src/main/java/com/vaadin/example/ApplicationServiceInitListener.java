@@ -39,7 +39,7 @@ public class ApplicationServiceInitListener implements VaadinServiceInitListener
 		jdbcTemplate.execute("DROP TABLE director IF EXISTS ");
 
 		jdbcTemplate.execute("CREATE TABLE grade (notenId IDENTITY NOT NULL PRIMARY KEY, wert INT)");
-		jdbcTemplate.execute("CREATE TABLE user (benutzerId IDENTITY NOT NULL PRIMARY KEY, name VARCHAR, nachname VARCHAR,username VARCHAR, passwort VARCHAR, recht VARCHAR)");
+		jdbcTemplate.execute("CREATE TABLE db_user (benutzerId IDENTITY NOT NULL PRIMARY KEY, name VARCHAR, nachname VARCHAR,username VARCHAR, passwort VARCHAR, recht VARCHAR)");
 		/*
 		jdbcTemplate.execute("CREATE TABLE movie (id IDENTITY NOT NULL PRIMARY KEY, title VARCHAR(255), directorId INT,"
 				+ "release_year INTEGER , imbd_link VARCHAR(255),"
@@ -52,7 +52,7 @@ public class ApplicationServiceInitListener implements VaadinServiceInitListener
 		jdbcTemplate.update("INSERT INTO grade VALUES (DEFAULT, 5)");
 		jdbcTemplate.update("INSERT INTO grade VALUES (DEFAULT, 4)");
 
-		jdbcTemplate.update("INSERT INTO user VALUES (DEFAULT, 'tabea', 'reiffer', 'tabi', 'tabi', 'ADMIN')");
+		jdbcTemplate.update("INSERT INTO db_user VALUES (DEFAULT, 'tabea', 'reiffer', 'tabi', 'tabi', 'ADMIN')");
 /*
 		jdbcTemplate.update(
 				"INSERT INTO movie VALUES (DEFAULT, 'Law Abiding Citizen', 1,2009, 'https://www.imdb.com/title/tt1197624/')");

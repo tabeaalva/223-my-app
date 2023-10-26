@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.vaadin.example.data.entity.User;
+import com.vaadin.example.data.entity.DBUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -33,7 +33,7 @@ public class UserService {
      * @return All movies in the database, with director information.
      */
 
-    public void addUser(User user) {
+    public void addUser(DBUser user) {
 
         final String sql = UserRowMapper.INSERT_INTO;
         template.update(
@@ -47,7 +47,7 @@ public class UserService {
 
     }
 
-    public void deletUser(User user) {
+    public void deletUser(DBUser user) {
 
         final String sql = UserRowMapper.DELETE_ALL;
         template.update(
@@ -61,14 +61,14 @@ public class UserService {
 
     }
 
-    public List<User> getUser() {
+    public List<DBUser> getUser() {
 
         // Use a query the sql mapper class understands
         final String sql = UserRowMapper.SELECT_ALL;
 
 
         // Use Spring's JdbcTemplate helper class to run the sql
-        final List<User> list = template.query(sql, new UserRowMapper());
+        final List<DBUser> list = template.query(sql, new UserRowMapper());
 
         return list;
     }
@@ -83,22 +83,22 @@ public class UserService {
      * The ResultSet is dependent on the SQL query we do in the Service class, so we
      * define the query here as a public constant.
      */
-    public static class UserRowMapper implements RowMapper<User> {
+    public static class UserRowMapper implements RowMapper<DBUser> {
 
         /**
          * SQL clause to fetch all Movies from the DB, with Director names included.
          */
-        public static final String SELECT_ALL = "SELECT * FROM user use";
+        public static final String SELECT_ALL = "SELECT * FROM db_user use";
         public static final String INSERT_INTO = "INSERT INTO kunde(name,nachname,username,passwort,recht) values(?,?,?)";
 
-        public static final String DELETE_ALL = "DELETE FROM user WHERE id = ?";
+        public static final String DELETE_ALL = "DELETE FROM db_user WHERE id = ?";
 
 
 
         @Override
-        public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+        public DBUser mapRow(ResultSet rs, int rowNum) throws SQLException {
 
-            final User user = new User();
+            final DBUser user = new DBUser();
             user.setBenutzerId(rs.getLong("benutzerid"));
             user.setName(rs.getString("name"));
             user.setNachname(rs.getString("nachname"));
