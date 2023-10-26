@@ -7,10 +7,12 @@ import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.flow.theme.lumo.LumoUtility.Margin;
 
 @PageTitle("Grades")
 @Route(value = "grades", layout = MainLayout.class)
+@AnonymousAllowed
 public class GradeView extends VerticalLayout {
 
     public GradeView() {

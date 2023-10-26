@@ -14,18 +14,16 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 import jakarta.annotation.security.RolesAllowed;
 
 @PageTitle("")
-@Route(value = "", layout = MainLayout.class)
+@Route(value = "home", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
-@RolesAllowed("ADMIN")
+@AnonymousAllowed
 public class HomeView extends HorizontalLayout {
 
     private TextField name;
-    private PasswordField password;
     private Button sayHello;
 
     public HomeView() {
         name = new TextField("Username ");
-        password = new PasswordField("Password");
         sayHello = new Button("Login");
 
 
@@ -37,7 +35,7 @@ public class HomeView extends HorizontalLayout {
         setMargin(true);
         setVerticalComponentAlignment(Alignment.END, name, sayHello);
 
-        add(name, password, sayHello);
+        add(name, sayHello);
 
     }
 
