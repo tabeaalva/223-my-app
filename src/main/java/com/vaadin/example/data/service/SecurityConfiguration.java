@@ -1,7 +1,9 @@
 package com.vaadin.example.data.service;
 
+import com.vaadin.example.data.entity.DBUser;
 import com.vaadin.example.views.login.LoginView;
 import com.vaadin.flow.spring.security.VaadinWebSecurity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +14,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @EnableWebSecurity
 @Configuration
@@ -56,17 +61,18 @@ public class SecurityConfiguration
      * NOTE: This shouldn't be used in real world applications.
      */
     @Bean
-    public UserDetailsManager userDetailsService() {
-        UserDetails user =
-                User.withUsername("user")
-                        .password("{noop}user")
-                        .roles("USER")
-                        .build();
-        UserDetails admin =
-                User.withUsername("admin")
-                        .password("{noop}admin")
-                        .roles("ADMIN")
-                        .build();
-        return new InMemoryUserDetailsManager(user, admin);
+    public UserDetailsManager userDetailsService(@Autowired UserService userService) {
+
+        List<DBUser> updateDBUser = userService.getUser();
+        List<UserDetails> userDetailsList = new ArrayList<>();
+        for (DBUser account : updateDBUser) {
+            System.out.println(account.getUsername());
+            UserDetails userDetails = User.withUsername(account.getUsername())
+                    .password("{noop}" + account.getPasswort())
+                    .roles(account.getRecht())
+                    .build();
+            userDetailsList.add(userDetails);
+        }
+        return new InMemoryUserDetailsManager(userDetailsList);
     }
 }

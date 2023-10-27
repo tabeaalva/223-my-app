@@ -51,7 +51,7 @@ public class UserService {
     public void deleteUser(Long benutzerId) {
 
         final String sql = UserRowMapper.DELETE_ALL;
-        template.update(sql, benutzerId);
+        template.update(sql, new Object[]{benutzerId});
 
     }
 

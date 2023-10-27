@@ -35,8 +35,10 @@ public class ApplicationServiceInitListener implements VaadinServiceInitListener
 	}
 
 	private void initDBStructure() {
+		/*
 		jdbcTemplate.execute("DROP TABLE movie IF EXISTS ");
 		jdbcTemplate.execute("DROP TABLE director IF EXISTS ");
+
 
 		jdbcTemplate.execute("CREATE TABLE grade (notenId IDENTITY NOT NULL PRIMARY KEY, wert INT)");
 		jdbcTemplate.execute("CREATE TABLE db_user (benutzerId IDENTITY NOT NULL PRIMARY KEY, name VARCHAR, nachname VARCHAR,username VARCHAR, passwort VARCHAR, recht VARCHAR)");
@@ -50,7 +52,7 @@ public class ApplicationServiceInitListener implements VaadinServiceInitListener
 	}
 
 	private void populateData() {
-
+/*
 		jdbcTemplate.update("INSERT INTO grade VALUES (DEFAULT, 5)");
 		jdbcTemplate.update("INSERT INTO grade VALUES (DEFAULT, 4)");
 
