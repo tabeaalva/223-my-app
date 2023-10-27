@@ -9,10 +9,11 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import com.vaadin.flow.theme.lumo.LumoUtility.Margin;
+import jakarta.annotation.security.RolesAllowed;
 
 @PageTitle("Grades")
 @Route(value = "grades", layout = MainLayout.class)
-@AnonymousAllowed
+@RolesAllowed("ADMIN")
 public class GradeView extends VerticalLayout {
 
     public GradeView() {

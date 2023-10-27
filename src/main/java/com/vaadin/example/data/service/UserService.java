@@ -48,17 +48,10 @@ public class UserService {
 
     }
 
-    public void deletUser(DBUser user) {
+    public void deleteUser(Long benutzerId) {
 
         final String sql = UserRowMapper.DELETE_ALL;
-        template.update(
-                sql,
-                user.getName(),
-                user.getNachname(),
-                user.getUsername(),
-                user.getPasswort(),
-                user.getRecht()
-        );
+        template.update(sql, benutzerId);
 
     }
 
@@ -90,7 +83,7 @@ public class UserService {
          * SQL clause to fetch all Movies from the DB, with Director names included.
          */
         public static final String SELECT_ALL = "SELECT * FROM db_user use";
-        public static final String INSERT_INTO = "INSERT INTO kunde(name,nachname,username,passwort,recht) values(?,?,?)";
+        public static final String INSERT_INTO = "INSERT INTO db_user(name,nachname,username,passwort,recht) values(?,?,?)";
 
         public static final String DELETE_ALL = "DELETE FROM db_user WHERE id = ?";
 

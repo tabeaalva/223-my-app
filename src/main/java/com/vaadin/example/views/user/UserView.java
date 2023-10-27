@@ -20,14 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
 
-
-/**
- * A simple Vaadin View class that shows all Movies in a database.
- * <p>
- * See {@link UserService} for details on the database, and
- * {@link ApplicationServiceInitListener} for adding more demo data.
- */
-
 @PageTitle("user")
 @Route(value="user", layout = MainLayout.class)
 @RouteAlias(value = "user", layout = MainLayout.class)
@@ -45,8 +37,19 @@ public class UserView extends VerticalLayout {
         this.userService = userService;
         setSizeFull();
 
-       // add.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        add.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         delete.addThemeVariants(ButtonVariant.LUMO_PRIMARY, ButtonVariant.LUMO_ERROR);
+        delete.addClickListener(e-> {
+            Set<DBUser> selectedItems = grid.getSelectedItems();
+
+            for (DBUser dbUser : selectedItems) {
+                // Führen Sie die Löschaktion für jede ausgewählte Zeile durch, z.B. mit einem KundenService
+                userService.deleteUser(dbUser.getBenutzerId());
+                refreshGrid(grid);
+            }
+            // Aktualisieren Sie das Grid nach dem Löschen
+
+        });
         HorizontalLayout horizontalLayout = new HorizontalLayout(add, delete);
 
         setHorizontalComponentAlignment(Alignment.END, horizontalLayout);
@@ -74,4 +77,8 @@ public class UserView extends VerticalLayout {
         });
     }
 
+    public void refreshGrid(Grid<?> grid) {
+        // Löschen des bestehenden Inhalts im Grid
+        grid.setItems();
+    }
 }
