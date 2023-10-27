@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -61,6 +63,10 @@ public class SecurityConfiguration
      * NOTE: This shouldn't be used in real world applications.
      */
     @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
+    @Bean
     public UserDetailsManager userDetailsService(@Autowired UserService userService) {
 
         List<DBUser> updateDBUser = userService.getUser();
@@ -68,11 +74,12 @@ public class SecurityConfiguration
         for (DBUser account : updateDBUser) {
             System.out.println(account.getUsername());
             UserDetails userDetails = User.withUsername(account.getUsername())
-                    .password("{noop}" + account.getPasswort())
+                    .password(account.getPasswort())
                     .roles(account.getRecht())
                     .build();
             userDetailsList.add(userDetails);
         }
         return new InMemoryUserDetailsManager(userDetailsList);
     }
+
 }

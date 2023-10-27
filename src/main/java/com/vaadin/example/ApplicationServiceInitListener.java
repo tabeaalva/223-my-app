@@ -27,15 +27,15 @@ public class ApplicationServiceInitListener implements VaadinServiceInitListener
 		// Initializing tables in the database
 
 		// First, remove if already exist
-		initDBStructure();
+		//initDBStructure();
 		// insert data
-		populateData();
+		//populateData();
 
 		System.out.println("_________DB initiation has finished____________");
 	}
 
 	private void initDBStructure() {
-		/*
+
 		jdbcTemplate.execute("DROP TABLE movie IF EXISTS ");
 		jdbcTemplate.execute("DROP TABLE director IF EXISTS ");
 
@@ -44,28 +44,17 @@ public class ApplicationServiceInitListener implements VaadinServiceInitListener
 		jdbcTemplate.execute("CREATE TABLE db_user (benutzerId IDENTITY NOT NULL PRIMARY KEY, name VARCHAR, nachname VARCHAR,username VARCHAR, passwort VARCHAR, recht VARCHAR)");
 		jdbcTemplate.execute("CREATE TABLE topics (topicId IDENTITY NOT NULL PRIMARY KEY, name VARCHAR, userId INT)");
 
-		/*
-		jdbcTemplate.execute("CREATE TABLE movie (id IDENTITY NOT NULL PRIMARY KEY, title VARCHAR(255), directorId INT,"
-				+ "release_year INTEGER , imbd_link VARCHAR(255),"
-				+ "CONSTRAINT FK_MOVIE_DIRECTOR FOREIGN KEY (directorId) REFERENCES director(id))");
-	*/
+
 	}
 
 	private void populateData() {
-/*
+
 		jdbcTemplate.update("INSERT INTO grade VALUES (DEFAULT, 5)");
 		jdbcTemplate.update("INSERT INTO grade VALUES (DEFAULT, 4)");
 
-		jdbcTemplate.update("INSERT INTO db_user VALUES (DEFAULT, 'tabea', 'reiffer', 'tabi', 'tabi', 'ADMIN')");
-		jdbcTemplate.update("INSERT INTO db_user VALUES (DEFAULT, 'sabrina', 'boccia', 'bina', 'bina', 'ADMIN')");
-/*
-		jdbcTemplate.update(
-				"INSERT INTO movie VALUES (DEFAULT, 'Law Abiding Citizen', 1,2009, 'https://www.imdb.com/title/tt1197624/')");
-		jdbcTemplate.update(
-				"INSERT INTO movie VALUES (DEFAULT, 'Knives Out', 2, 2019, 'https://www.imdb.com/title/tt8946378/')");
-		jdbcTemplate.update(
-				"INSERT INTO movie VALUES (DEFAULT, 'The Last Jedi', 2, 2017, 'https://www.imdb.com/title/tt2527336/')");
-*/
+		jdbcTemplate.update("INSERT INTO db_user VALUES (DEFAULT, 'tabea', 'reiffer', 'tabi', '$2a$12$JxwOUn6Cj6D7rx5f16vj0uKB8BFAyhW5moPJD2NMjrvUrvurQnCdG', 'ADMIN')");
+		jdbcTemplate.update("INSERT INTO db_user VALUES (DEFAULT, 'sabrina', 'boccia', 'bina', '$2a$12$Z0uFdEHGGI722E3hoVTtm.csJED4INv78nWuW3DVmgVemtmBFRSay', 'ADMIN')");
+
 	}
 
 }

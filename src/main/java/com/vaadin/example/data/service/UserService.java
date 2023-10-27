@@ -83,7 +83,7 @@ public class UserService {
          * SQL clause to fetch all Movies from the DB, with Director names included.
          */
         public static final String SELECT_ALL = "SELECT * FROM db_user use";
-        public static final String INSERT_INTO = "INSERT INTO db_user(name,nachname,username,passwort,recht) values(?,?,?)";
+        public static final String INSERT_INTO = "INSERT INTO db_user(name,nachname,username,passwort,recht) values(?,?,?,?,?)";
 
         public static final String DELETE_ALL = "DELETE FROM db_user WHERE benutzerId = ?";
 
