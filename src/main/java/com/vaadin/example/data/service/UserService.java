@@ -85,7 +85,7 @@ public class UserService {
         public static final String SELECT_ALL = "SELECT * FROM db_user use";
         public static final String INSERT_INTO = "INSERT INTO db_user(name,nachname,username,passwort,recht) values(?,?,?)";
 
-        public static final String DELETE_ALL = "DELETE FROM db_user WHERE id = ?";
+        public static final String DELETE_ALL = "DELETE FROM db_user WHERE benutzerId = ?";
 
 
 
