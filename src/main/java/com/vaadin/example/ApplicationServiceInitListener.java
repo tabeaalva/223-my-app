@@ -55,6 +55,7 @@ public class ApplicationServiceInitListener implements VaadinServiceInitListener
 		jdbcTemplate.update("INSERT INTO grade VALUES (DEFAULT, 4)");
 
 		jdbcTemplate.update("INSERT INTO db_user VALUES (DEFAULT, 'tabea', 'reiffer', 'tabi', 'tabi', 'ADMIN')");
+		jdbcTemplate.update("INSERT INTO db_user VALUES (DEFAULT, 'sabrina', 'boccia', 'bina', 'bina', 'ADMIN')");
 /*
 		jdbcTemplate.update(
 				"INSERT INTO movie VALUES (DEFAULT, 'Law Abiding Citizen', 1,2009, 'https://www.imdb.com/title/tt1197624/')");

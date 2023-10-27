@@ -16,7 +16,7 @@ import jakarta.annotation.security.RolesAllowed;
 @PageTitle("")
 @Route(value = "home", layout = MainLayout.class)
 @RouteAlias(value = "", layout = MainLayout.class)
-@AnonymousAllowed
+@RolesAllowed("ADMIN")
 public class HomeView extends HorizontalLayout {
 
     private TextField name;
@@ -24,7 +24,7 @@ public class HomeView extends HorizontalLayout {
 
     public HomeView() {
         name = new TextField("Username ");
-        sayHello = new Button("Login");
+        sayHello = new Button("say hello");
 
 
         sayHello.addClickListener(e -> {

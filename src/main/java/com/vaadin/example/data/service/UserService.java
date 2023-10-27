@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.vaadin.example.data.entity.DBUser;
+import com.vaadin.example.data.entity.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -106,6 +107,11 @@ public class UserService {
             user.setPasswort(rs.getString("passwort"));
             user.setRecht(rs.getString("recht"));
 
+            /*final Topic topic = new Topic();
+            topic.setTopicId(rs.getLong("topicId"));
+            topic.setName(rs.getString("name"));
+            user.getTopics();
+*/
 
 
             return user;

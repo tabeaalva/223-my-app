@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.vaadin.example.data.entity.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -65,12 +66,6 @@ public class GradeService {
 			grade.setId(rs.getLong("id"));
 			grade.setWert(rs.getInt("wert"));
 
-			/*
-			final Director director = new Director();
-			director.setId(rs.getLong("directorId"));
-			director.setName(rs.getString("name"));
-			movie.setDirector(director);
-			 */
 
 			return grade;
 		}

@@ -1,5 +1,9 @@
 package com.vaadin.example.data.entity;
 
+import com.vaadin.flow.theme.lumo.LumoUtility;
+
+import java.util.List;
+
 public class DBUser {
 
     private Long benutzerId;
@@ -8,9 +12,18 @@ public class DBUser {
     private String username;
     private String passwort;
     private String recht;
+    private List<Topic> topics;
 
     public DBUser() {
 
+    }
+
+    public List<Topic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
     }
 
     public Long getBenutzerId() {
