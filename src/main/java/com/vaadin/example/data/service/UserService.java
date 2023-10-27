@@ -106,6 +106,8 @@ public class UserService {
             user.setPasswort(rs.getString("passwort"));
             user.setRecht(rs.getString("recht"));
 
+
+
             return user;
         }
     }

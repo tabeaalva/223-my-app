@@ -40,6 +40,8 @@ public class ApplicationServiceInitListener implements VaadinServiceInitListener
 
 		jdbcTemplate.execute("CREATE TABLE grade (notenId IDENTITY NOT NULL PRIMARY KEY, wert INT)");
 		jdbcTemplate.execute("CREATE TABLE db_user (benutzerId IDENTITY NOT NULL PRIMARY KEY, name VARCHAR, nachname VARCHAR,username VARCHAR, passwort VARCHAR, recht VARCHAR)");
+		jdbcTemplate.execute("CREATE TABLE topics (topicId IDENTITY NOT NULL PRIMARY KEY, name VARCHAR, userId INT)");
+
 		/*
 		jdbcTemplate.execute("CREATE TABLE movie (id IDENTITY NOT NULL PRIMARY KEY, title VARCHAR(255), directorId INT,"
 				+ "release_year INTEGER , imbd_link VARCHAR(255),"

@@ -3,7 +3,6 @@ package com.vaadin.example.data.entity;
 public class DBUser {
 
     private Long benutzerId;
-
     private String name;
     private String nachname;
     private String username;
